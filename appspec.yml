@@ -1,0 +1,21 @@
+version: 0.0
+os: linux
+files:
+  - source: /index.html
+    destination: /var/www/html/
+
+hooks:
+  BeforeInstall:
+    - name: dependency-installation
+      location: installation-dependencies
+      timeout: 200
+      runas: root
+    - name: start-server
+      location: start-server
+      timeout: 200
+      runas: root
+  ApplicationStop:
+    - name: stop-server
+      location: stop-server
+      timeout: 200
+      runas: root
